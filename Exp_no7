@@ -1,0 +1,12 @@
+Step 1: Create a database and table in the hive.
+create table hive_table_export(name string,company string, phone int, age int) row 
+format delimited fields terminated by ‘,’;
+
+Step 2: Insert data into the hive table.
+insert into hive_table_export values("Ritik","Amazon",234567891,35);
+
+Step 3: Create a database and table in MySQL in which data should be exported.
+
+Step 4: Run the following command on Hadoop.
+
+Step 5: Check-in MySQL if data is exported successfully or not.
