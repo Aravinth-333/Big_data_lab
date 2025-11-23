@@ -1,0 +1,50 @@
+Step 1: Download and install Java
+https://www.oracle.com/java/technologies/javase-downloads.html
+
+Step 2: Download Hadoop
+https://hadoop.apache.org/releases.html
+
+Step 3: Set Environment Variables
+Step 4: Setup Hadoop
+ou must configure Hadoop in this phase by modifying several configuration files. Navigate to the 
+“etc/hadoop” folder in the Hadoop folder. 
+
+You must make changes to three files:
+core-site.xml
+<configuration>
+ <property>
+ <name>fs.default.name</name>
+ <value>hdfs://localhost:9000</value>
+ </property>
+</configuration>
+hdfs-site.xml
+<configuration>
+ <property>
+ <name>dfs.replication</name>
+ <value>1</value>
+ </property>
+ <property>
+ <name>dfs.namenode.name.dir</name>
+ <value>file:/hadoop-3.3.1/data/namenode</value>
+ </property>
+ <property>
+ <name>dfs.datanode.data.dir</name>
+ <value>file:/hadoop-3.3.1/data/datanode</value>
+ </property>
+</configuration>
+mapred-site.xml
+<configuration>
+ <property>
+ <name>mapred.job.tracker</name>
+ <value>localhost:54311</value>
+ </property>
+</configuration>
+
+Step 5: Format Hadoop NameNode
+hadoop namenode –format
+
+Step 6: Start Hadoop
+start-all.cmd
+
+Step 7: Verify Hadoop Installation
+http://localhost:50070/.
