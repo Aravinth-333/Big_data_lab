@@ -1,0 +1,64 @@
+The following queries demonstrate some built-in functions:
+round() function
+hive> SELECT round(2.6) from temp;
+successful execution of query, following response:
+3.0
+
+floor() function
+hive> SELECT floor(2.6) from temp;
+On successful execution of the query,following response:
+2.0
+
+ceil() function
+hive> SELECT ceil(2.6) from temp;
+On successful execution of the query,following response:
+3.0
+
+Aggregate Functions
+Hive supports the following built-in aggregate functions. The usage of these functions is as same as the SQL aggregate functions.
+Return Type Signature Description
+BIGINT count(*), 
+count(expr),
+count(*) - Returns the total number of retrieved 
+rows.
+
+DOUBLE sum(col), 
+sum(DISTINCT col)
+It returns the sum of the elements in the group or 
+the sum of the distinct values of the column in 
+the group.
+
+DOUBLE avg(col), 
+avg(DISTINCT col)
+It returns the average of the elements in the group or the average of the distinct values of the column in the group.
+DOUBLE min(col) It returns the minimum value of the column in the group.
+DOUBLE max(col) It returns the maximum value of the column in the group.
+Creating an Index
+An Index is nothing but a pointer on a particular column of a table. Creating an index means creating a pointer on a particular column of a table. Its syntax is as follows:
+CREATE INDEX index_name
+ON TABLE base_table_name (col_name, ...)
+AS 'index.handler.class.name'
+[WITH DEFERRED REBUILD]
+[IDXPROPERTIES (property_name=property_value, ...)]
+[IN TABLE index_table_name]
+[PARTITIONED BY (col_name, ...)]
+[
+ [ ROW FORMAT ...] STORED AS ...
+ | STORED BY ...
+]
+[LOCATION hdfs_path]
+[TBLPROPERTIES (...)]
+
+Example
+Let us take an example for index. Use the same employee table that we have used earlier with the fields Id, Name, Salary, Designation, and Dept. Create an index named 
+index_salary on the salary column of the employee table.The following query creates an index:
+hive> CREATE INDEX inedx_salary ON TABLE employee(salary)
+AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler';
+It is a pointer to the salary column. If the column is modified, the changes are stored using an index value.
+
+Dropping an Index
+The following syntax is used to drop an index:
+DROP INDEX <index_name> ON <table_name>
+The following query drops an index named index_salary:
+
+hive> DROP INDEX index_salary ON employee;
