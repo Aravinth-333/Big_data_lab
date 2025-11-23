@@ -45,4 +45,44 @@ Output:
 (21,{(4,Preethi,Agarwal,21,9848022330,Pune),(1,Rajiv,Reddy,21,9848022337,Hydera bad)})
 (22,{(3,Rajesh,Khanna,22,9848022339,Delhi),(2,siddarth,Battacharya,22,984802233 8,Kolkata)})
 (23,{(6,Archana,Mishra,23,9848022335,Chennai),(5,Trupthi,Mohanthy,23,9848022336 ,Bhuwaneshwar)})
-(24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334, trivendram)})
+ (24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334, trivendram)})
+ 
+                                                                                     
+                                                                                     Exp_no 5b
+
+The FILTER operator is used to select the required tuples from a relation based on a 
+condition.
+Given below is the syntax of the FILTER operator.
+grunt> Relation2_name = FILTER Relation1_name BY (condition);
+
+student_details.txt
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+
+And we have loaded this file into Pig with the relation name student_details as shown 
+below.
+
+grunt> student_details = LOAD 
+'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+ as (id:int, firstname:chararray, lastname:chararray, age:int,
+phone:chararray, city:chararray);
+
+Let us now use the Filter operator to get the details of the students who belong to the city 
+Chennai.
+filter_data = FILTER student_details BY city == 'Chennai';
+
+Verification
+Verify the relation filter_data using the DUMP operator as shown below.
+grunt> Dump filter_data;
+
+Output
+It will produce the following output, displaying the contents of the relation filter_data as 
+follows.
+(6,Archana,Mishra,23,9848022335,Chennai)
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
