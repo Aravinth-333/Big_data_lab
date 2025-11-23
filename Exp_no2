@@ -1,0 +1,37 @@
+Step 1: Adding Files and Directories to HDFS
+
+1. Create a directory in HDFS:
+
+          hadoop fs -mkdir /user/myfile
+
+This command creates a new directory named myfile in the /user directory in HDFS.
+
+2. Add a file to HDFS:
+
+          hadoop fs -put a.txt
+
+This command uploads the file a.txt from the local filesystem to the root directory of 
+HDFS.
+
+3. Add the file to the newly created directory:
+
+          hadoop fs -put a.txt /user/myfile
+
+This command uploads the file a.txt from the local filesystem directly into 
+the /user/myfile directory in HDFS.
+
+Step 2: Retrieving Files from HDFS
+
+          hadoop fs -cat a.txt
+
+This command displays the contents of the file a.txt directly to the console. To actually copy the 
+file to the local filesystem, you would use:
+
+hadoop fs -get a.txt /user/hadoop
+/local/path is replaced  with the desired path on your local filesystem.
+
+Step 3: Deleting Files from HDFS
+To delete a file from HDFS, use the rm command. Here’s how to delete a.txt:
+
+          hadoop fs -rm a.txt
+This command removes the file a.txt from HDFS.
