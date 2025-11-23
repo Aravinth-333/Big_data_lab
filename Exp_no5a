@@ -1,0 +1,48 @@
+Student data:
+Assume we have a file student_data.txt in HDFS with the following content.
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+
+Step 1:
+Load and store the student data in HDFS .
+
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt'
+ USING PigStorage(',')
+ as ( id:int, firstname:chararray, lastname:chararray, phone:chararray,
+ city:chararray );
+
+The ORDER BY operator is used to display the contents of a relation in a sorted order based 
+on one or more fields.
+grunt> Relation_name2 = ORDER Relatin_name1 BY (ASC|DESC);
+Verify the relation order_by_data using the DUMP operator as shown below.
+grunt> Dump order_by_data;
+
+Output
+It will produce the following output, displaying the contents of the relation order_by_data.
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+(7,Komal,Nayak,24,9848022334,trivendram)
+(6,Archana,Mishra,23,9848022335,Chennai) 
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar)
+(3,Rajesh,Khanna,22,9848022339,Delhi) 
+(2,siddarth,Battacharya,22,9848022338,Kolkata)
+(4,Preethi,Agarwal,21,9848022330,Pune) 
+(1,Rajiv,Reddy,21,9848022337,Hyderabad)
+
+The GROUP operator is used to group the data in one or more relations. It collects the data 
+having the same key.
+Given below is the syntax of the group operator.
+Now, let us group the records/tuples in the relation by age as shown below.
+grunt> group_data = GROUP student_details by age;
+Verify the relation group_data using the DUMP operator as shown below.
+grunt> Dump group_data;
+Output:
+(21,{(4,Preethi,Agarwal,21,9848022330,Pune),(1,Rajiv,Reddy,21,9848022337,Hydera bad)})
+(22,{(3,Rajesh,Khanna,22,9848022339,Delhi),(2,siddarth,Battacharya,22,984802233 8,Kolkata)})
+(23,{(6,Archana,Mishra,23,9848022335,Chennai),(5,Trupthi,Mohanthy,23,9848022336 ,Bhuwaneshwar)})
+(24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334, trivendram)})
